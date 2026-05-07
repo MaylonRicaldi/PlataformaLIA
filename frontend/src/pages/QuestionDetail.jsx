@@ -45,7 +45,7 @@ console.error(error)
 
 
 if(!question){
-return <p>Cargando...</p>
+return <p className="questions-loading">Cargando...</p>
 }
 
 

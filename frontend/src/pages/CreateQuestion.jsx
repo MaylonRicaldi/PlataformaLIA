@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import api from "../services/api";
 import { auth } from "../app/firebase";
+import "./CreateQuestion.css";
 
 
 export default function CreateQuestion() {
@@ -99,10 +100,21 @@ export default function CreateQuestion() {
 
     <div className="page form-page">
 
+      <div className="deco-circle" />
+
       <h1 className="page-title">
-        Crear Pregunta
+        💡 Crear Pregunta
       </h1>
 
+      <p className="page-subtitle">
+        La IA analizará tu pregunta automáticamente
+      </p>
+
+      <div className="form-tips">
+        <div className="form-tip"><span>🎯</span> Sé específico</div>
+        <div className="form-tip"><span>🧠</span> Invita a reflexionar</div>
+        <div className="form-tip"><span>📖</span> Usa el tema del curso</div>
+      </div>
 
       <form
         onSubmit={submitQuestion}
@@ -125,6 +137,15 @@ export default function CreateQuestion() {
           }
         />
 
+        <div className="ai-badge">
+          <div className="ai-badge-icon">🤖</div>
+          <div className="ai-badge-text">
+            <strong>Análisis automático con IA</strong>
+            Tu pregunta recibirá un nivel cognitivo y sugerencias de mejora
+          </div>
+        </div>
+
+        <div className="form-divider">lista para enviar</div>
 
         <button
           type="submit"
@@ -134,8 +155,8 @@ export default function CreateQuestion() {
 
           {
             loading
-              ? "Analizando con IA..."
-              : "Guardar pregunta"
+              ? "⏳ Analizando con IA..."
+              : "🚀 Guardar pregunta"
           }
 
         </button>

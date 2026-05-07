@@ -1,79 +1,67 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../services/api";
+import "./Courses.css"; // 👈 solo esto se agrega
 
 
 export default function Courses(){
 
- const [courses,setCourses]=useState([])
+  const [courses, setCourses] = useState([])
 
- useEffect(()=>{
-   loadCourses()
- },[])
+  useEffect(()=>{
+    loadCourses()
+  },[])
 
+  const loadCourses = async () => {
+    try {
+      const res = await api.get("/courses")
+      setCourses(res.data.courses)
+    } catch(error) {
+      console.log(error)
+    }
+  }
 
- const loadCourses=async()=>{
+  return(
 
-   try{
+    <div className="page">
 
-    const res=
-      await api.get(
-        "/courses"
-      )
+      <h1 className="page-title">
+        Cursos Disponibles
+      </h1>
 
-    setCourses(
-      res.data.courses
-    )
+      <div className="grid">
 
-   }catch(error){
-     console.log(error)
-   }
+        {
+          courses.map(course=>(
 
- }
+            <div
+              className="card"
+              key={course.id}
+            >
 
+              <h2>
+                {course.name}
+              </h2>
 
- return(
+              <p>
+                {course.description}
+              </p>
 
-<div className="page">
+              <Link
+                to={`/courses/${course.id}/questions`}
+                className="primary-btn"
+              >
+                Ver preguntas
+              </Link>
 
-<h1 className="page-title">
-Cursos Disponibles
-</h1>
+            </div>
 
-<div className="grid">
+          ))
+        }
 
-{
-courses.map(course=>(
+      </div>
 
-<div
- className="card"
- key={course.id}
->
+    </div>
 
-<h2>
-{course.name}
-</h2>
-
-<p>
-{course.description}
-</p>
-
-<Link
-to={`/courses/${course.id}/questions`}
-className="primary-btn"
->
-Ver preguntas
-</Link>
-
-</div>
-
-))
-}
-
-</div>
-
-</div>
-
-)
-
+  )
 }

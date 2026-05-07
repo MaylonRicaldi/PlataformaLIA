@@ -70,7 +70,7 @@ className="create-btn"
 
 {
 loading &&
-<p>Cargando preguntas...</p>
+<p className="questions-loading">Cargando preguntas...</p>
 }
 
 
@@ -78,7 +78,7 @@ loading &&
 {
 !loading &&
 questions.length===0 &&
-<p>No hay preguntas todavía.</p>
+<p className="questions-empty">No hay preguntas todavía.</p>
 }
 
 
